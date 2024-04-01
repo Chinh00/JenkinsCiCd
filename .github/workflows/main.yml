@@ -1,1 +1,24 @@
-
+name: Build and Push Docker image
+on: 
+  workflow_dispatch:
+  push: 
+jobs: 
+  build:
+    name: Build docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: Library
+      - name: Move Dockerfile
+        run: mv Library/Dockerfile ./Dockerfile
+      - name: Docker build
+        run: docker build . -t ${{ secrets.DOCKERHUB_USERNAME }}//${{ secrets.DOCKERHUB_IMAGE_NAME  }}
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Push app Docker image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_IMAGE_NAME }}
