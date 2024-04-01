@@ -10,7 +10,6 @@ ENV ASPNETCORE_HTTP_PORTS=8080
 RUN dotnet restore "JenkinsCiCd/JenkinsCiCd.sln"
 
 COPY . .
-
 COPY JenkinsCiCd JenkinsCiCd
 
 WORKDIR /app
