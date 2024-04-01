@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          path: Library
+          path: JenkinsCiCd
       - name: Move Dockerfile
         run: mv JenkinsCiCd/Dockerfile ./Dockerfile
       - name: Docker build
