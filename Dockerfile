@@ -9,7 +9,7 @@ WORKDIR /app
 
 # Copy the solution file into the container
 COPY "JenkinsCiCd.sln" "JenkinsCiCd.sln"
-COPY "JenkinsCiCd/JenkinsCiCd.csproj" "JenkinsCiCd/JenkinsCiCd.csproj"
+COPY "JenkinsCiCd/JenkinsCiCd/JenkinsCiCd.csproj" "JenkinsCiCd/JenkinsCiCd/JenkinsCiCd.csproj"
 
 # Restore NuGet packages
 RUN dotnet restore "JenkinsCiCd.sln"
