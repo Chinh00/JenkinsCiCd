@@ -12,7 +12,8 @@ RUN dotnet restore "JenkinsCiCd/JenkinsCiCd.sln"
 COPY . .
 
 FROM build AS publish
-RUN dotnet publish -c Release -o /app/publish
+WORKDIR /app
+RUN dotnet publish -c Release -o /app "JenkinsCiCd/JenkinsCiCd.sln"
 
 
 FROM build AS final
