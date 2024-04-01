@@ -1,23 +1,43 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+﻿# Use the .NET Core SDK image to build the application
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["JenkinsCiCd/JenkinsCiCd.csproj", "JenkinsCiCd/"]
-RUN dotnet restore "JenkinsCiCd/JenkinsCiCd.csproj"
+# Set environment variable for ASP.NET Core to use port 80
+ENV ASPNETCORE_HTTP_PORTS=80
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the solution file into the container
+COPY "JenkinsCiCd.sln" "JenkinsCiCd.sln"
+COPY "JenkinsCiCd/JenkinsCiCd.csproj" "JenkinsCiCd/JenkinsCiCd.csproj"
+
+# Restore NuGet packages
+RUN dotnet restore "JenkinsCiCd.sln"
+
+# Copy the rest of the application source code into the container
 COPY . .
-WORKDIR "/src/JenkinsCiCd"
-RUN dotnet build "JenkinsCiCd.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "JenkinsCiCd.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
-
-FROM base AS final
+# Change working directory to /app
 WORKDIR /app
-COPY --from=publish /app/publish .
+
+# Publish the application
+RUN dotnet publish -c Release -o out "JenkinsCiCd.sln"
+
+
+# Use the .NET Core ASP.NET Runtime image for running the application
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+
+# Set environment variable for ASP.NET Core to use port 80
+ENV ASPNETCORE_HTTP_PORTS=80
+
+# Expose port 80 to the outside world
+EXPOSE 80
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the published output from the build environment into the container
+COPY --from=build-env /app/out .
+
+# Set the entry point for the container
 ENTRYPOINT ["dotnet", "JenkinsCiCd.dll"]
