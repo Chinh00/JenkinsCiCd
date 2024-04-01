@@ -11,13 +11,16 @@ RUN dotnet restore "JenkinsCiCd/JenkinsCiCd.sln"
 
 COPY . .
 
-FROM build AS publish
+COPY JenkinsCiCd JenkinsCiCd
+
 WORKDIR /app
 RUN dotnet publish -c Release -o /app "JenkinsCiCd/JenkinsCiCd.sln"
 
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+ENV ASPNETCORE_HTTP_PORTS=80
+EXPOSE 80
 
-FROM build AS final
-EXPOSE 8080
+
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/out .
 ENTRYPOINT ["dotnet", "JenkinsCiCd.dll"]
