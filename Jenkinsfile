@@ -2,9 +2,9 @@
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Checkout scm') {
             steps {
-                echo 'Hello World'
+                sh 'git clone https://github.com/Chinh00/JenkinsCiCd'
             }
         }
     }
