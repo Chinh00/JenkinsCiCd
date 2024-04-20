@@ -1,11 +1,11 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
-
+RUN ls -l JenkinsCiCd
 COPY ["JenkinsCiCd/JenkinsCiCd/JenkinsCiCd.sln", "JenkinsCiCd/JenkinsCiCd/JenkinsCiCd.sln"]
 RUN dotnet restore "JenkinsCiCd/JenkinsCiCd.sln"
 COPY . .
 
-RUN ls -l JenkinsCiCd
+
 #RUN dotnet publish -c Release -o /app/out
 #
 #FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS Prod
