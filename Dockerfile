@@ -3,11 +3,11 @@ WORKDIR /app
 
 
 COPY ["JenkinsCiCd/JenkinsCiCd/JenkinsCiCd.csproj", "JenkinsCiCd/JenkinsCiCd/JenkinsCiCd.csproj"]
-RUN ls -l JenkinsCiCd/JenkinsCiCd
+
 
 RUN dotnet restore "JenkinsCiCd/JenkinsCiCd/JenkinsCiCd.csproj"
-COPY ["JenkinsCiCd/JenkinsCiCd/", "JenkinsCiCd/JenkinsCiCd/" ]
-
+COPY ["JenkinsCiCd/", "JenkinsCiCd/" ]
+RUN ls -l JenkinsCiCd/
 
 RUN dotnet publish -c Release -o /app/out
 #
