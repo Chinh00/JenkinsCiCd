@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 
-COPY ["JenkinsCiCd/JenkinsCiCd.sln", "."]
+COPY ["JenkinsCiCd/JenkinsCiCd.sln", "JenkinsCiCd/JenkinsCiCd.sln"]
 RUN ls -l
 
 RUN dotnet restore "JenkinsCiCd.sln"
