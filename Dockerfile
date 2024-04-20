@@ -1,8 +1,8 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
-COPY ["JenkinsCiCd/JenkinsCiCd/JenkinsCiCd.csproj", "JenkinsCiCd/"]
-RUN dotnet restore "JenkinsCiCd/JenkinsCiCd.csproj"
+COPY ["JenkinsCiCd/JenkinsCiCd.sln", "JenkinsCiCd/JenkinsCiCd.sln"]
+RUN dotnet restore "JenkinsCiCd/JenkinsCiCd.sln"
 COPY . .
 
 RUN ls -l JenkinsCiCd
