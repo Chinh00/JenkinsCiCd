@@ -12,5 +12,5 @@ jobs:
         with:
           path: JenkinsCiCd
       - name: Docker build
-        run: ls
+        run: ls -l /JenkinsCiCd
       
