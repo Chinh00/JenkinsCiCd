@@ -12,5 +12,7 @@ jobs:
         with:
           path: JenkinsCiCd
       - name: Docker build
-        run: ls
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_IMAGE_NAME  }} .
+        with: 
+          path: JenkinsCiCd
       
