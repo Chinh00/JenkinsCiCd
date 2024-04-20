@@ -5,7 +5,7 @@ WORKDIR /app
 COPY ["JenkinsCiCd/JenkinsCiCd.sln", "JenkinsCiCd/JenkinsCiCd.sln"]
 RUN ls -l
 
-RUN dotnet restore "JenkinsCiCd.sln"
+RUN dotnet restore "JenkinsCiCd/JenkinsCiCd.sln"
 #COPY . .
 
 
