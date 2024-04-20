@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-RUN echo github.workspace
+RUN echo "${ github.workspace }"
 WORKDIR /app
 
 
