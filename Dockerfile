@@ -1,10 +1,12 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 RUN pwd
+
 #COPY ["JenkinsCiCd/JenkinsCiCd.csproj", "JenkinsCiCd/"]
 #RUN dotnet restore "JenkinsCiCd/JenkinsCiCd.csproj"
 #
-#COPY . .
+COPY . .
+RUN ls -l JenkinsCiCd
 #RUN dotnet publish -c Release -o ./out
 #
 #
