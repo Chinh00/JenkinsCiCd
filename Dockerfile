@@ -10,13 +10,13 @@ COPY ["JenkinsCiCd/", "JenkinsCiCd/" ]
 RUN ls -l JenkinsCiCd/
 WORKDIR /app/JenkinsCiCd
 RUN dotnet publish -c Release -o /app/out
-#
-#FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS Prod
-#WORKDIR /app
-#EXPOSE 8080
-#COPY --from=build /app/out .
-#ENTRYPOINT ["dotnet", "JenkinsCiCd.dll"]
-#
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS Prod
+WORKDIR /app
+EXPOSE 8080
+COPY --from=build /app/out .
+ENTRYPOINT ["dotnet", "JenkinsCiCd.dll"]
+
 
 
 
