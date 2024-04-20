@@ -8,7 +8,7 @@ COPY ["JenkinsCiCd/JenkinsCiCd/JenkinsCiCd.csproj", "JenkinsCiCd/JenkinsCiCd/Jen
 RUN dotnet restore "JenkinsCiCd/JenkinsCiCd/JenkinsCiCd.csproj"
 COPY ["JenkinsCiCd/", "JenkinsCiCd/" ]
 RUN ls -l JenkinsCiCd/
-
+WORKDIR /app/JenkinsCiCd
 RUN dotnet publish -c Release -o /app/out
 #
 #FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS Prod
