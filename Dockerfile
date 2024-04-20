@@ -2,9 +2,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 
-#COPY ["JenkinsCiCd/JenkinsCiCd/JenkinsCiCd.sln", "JenkinsCiCd/JenkinsCiCd/JenkinsCiCd.sln"]
+COPY ["JenkinsCiCd/JenkinsCiCd.sln", "."]
 #RUN #dotnet restore "JenkinsCiCd/JenkinsCiCd.sln"
-COPY . .
+#COPY . .
 RUN ls -l JenkinsCiCd
 
 
