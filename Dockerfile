@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 RUN pwd
 
-#COPY ["JenkinsCiCd/JenkinsCiCd.csproj", "JenkinsCiCd/"]
+COPY ["JenkinsCiCd/JenkinsCiCd/JenkinsCiCd.csproj", "JenkinsCiCd/"]
 #RUN dotnet restore "JenkinsCiCd/JenkinsCiCd.csproj"
 #
 COPY . .
