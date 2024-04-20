@@ -3,7 +3,7 @@ WORKDIR /app
 
 
 COPY ["JenkinsCiCd/JenkinsCiCd/JenkinsCiCd.csproj", "JenkinsCiCd/JenkinsCiCd/JenkinsCiCd.csproj"]
-RUN ls -l JenkinsCiCd
+RUN ls -l JenkinsCiCd/JenkinsCiCd
 
 #RUN dotnet restore "JenkinsCiCd/JenkinsCiCd.sln"
 #COPY . .
