@@ -3,9 +3,10 @@ WORKDIR /app
 
 
 COPY ["JenkinsCiCd/JenkinsCiCd.sln", "."]
+RUN ls -l
+
 RUN dotnet restore "JenkinsCiCd.sln"
 #COPY . .
-RUN ls -l
 
 
 #RUN dotnet publish -c Release -o /app/out
