@@ -9,9 +9,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          path: JenkinsCiCd
       - name: Docker build
         shell: bash
-        run: echo $github
+        run: ls
       
