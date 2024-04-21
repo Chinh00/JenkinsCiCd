@@ -11,5 +11,5 @@ jobs:
         uses: actions/checkout@v4
       - name: Docker build
         shell: bash
-        run: docker build -t chinhval/myapp -f "/JenkinsCiCd" .
+        run: docker build -t chinhval/myapp -f "JenkinsCiCd/Dockerfile" .
     
